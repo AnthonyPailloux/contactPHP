@@ -1,5 +1,5 @@
 <?php
-
+session_start
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +14,11 @@
     <?php include "../includes/header.php" ;?>
     <main>
 
-        <form action="" method="POST"></form>
+        <form action="" method="POST">
         <ul>
             <li>
                 <label for="pseudo">Pseudo :</label>
-                <input type="text" id="pseudo" placeholder="entrte ton pseudo">
+                <input type="text" id="pseudo" name="pseudo" placeholder="entrte ton pseudo">
             </li>
 
             <li>
@@ -30,8 +30,23 @@
                 <input type="submit" value="Valider">
             </div>
         </ul>
+        </form>
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST")
+        var_dump($_SESSION);
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $pseudo = $_POST["pseudo"] ?? '';
+            $message = $_POST["message"] ?? '';
+            
+            
+
+            if (!empty($pseudo) && !empty($message)) {
+                $newContact = [
+                    "pseudo" => $pseudo,
+                    "message" => $message,
+                ];
+            }
+        }
+
         ?>
 
     </main>
